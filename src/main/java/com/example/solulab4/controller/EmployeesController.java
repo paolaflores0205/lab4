@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -71,7 +72,7 @@ public class EmployeesController {
     @PostMapping("/guardarCambios")
     public String guardarNuevoEmployee(@RequestParam("depId") Integer depId,
                                        @RequestParam("employeeId") Integer employeeId,
-                                       @RequestParam("jobId") Integer jobId){
+                                       @RequestParam("jobId") String jobId){
         employeesRepository.actualizarEmployee(depId,jobId,employeeId);
         return "redirect:/empleados/lista";
         /*
@@ -88,6 +89,7 @@ public class EmployeesController {
         model.addAttribute("listaJobs",jobsRepository.findAll());
         model.addAttribute("listaDepartments",departmentsRepository.findAll());
         model.addAttribute("listaEmployees",employeesRepository.findAll());
+        model.addAttribute("fechaHoy", LocalDate.now());
 
         return  "empleados/newFrm";
     }

@@ -10,10 +10,11 @@
 
 </head>
 <body>
-
+<div class="container mt-5 shadow-sm p-4 bg-white rounded">
 <h2>Nuevo Empleado</h2>
-<form method="post" th:action="@{'/empleados/nuevo'}">
+<form method="post" th:action="@{'/empleados/guardarNuevo'}">
 <!--    <input th:value="${emp.id}" name="id" type="hidden">-->
+    <input th:value="${fechaHoy}" name="hire_date" type="hidden">
     <div class="form-group">
         <label for="first_name">Nombre</label>
         <input name="first_name" type="text" class="form-control" id="first_name" >
@@ -31,8 +32,8 @@
         <input name="password" type="text" class="form-control" id="password" >
     </div>
     <div class="form-group">
-        <label for="jobId">Puesto</label>
-        <select name="jobId" id="jobId" class="form-select">
+        <label>Puesto</label>
+        <select name="job.id" class="form-select">
             <option value="" selected disabled>-- Elija un puesto --</option>
             <option th:each="job : ${listaJobs}"
                     th:value="${job.id}"
@@ -42,11 +43,11 @@
     </div>
     <div class="form-group">
         <label for="salary">Sueldo</label>
-        <input name="salary" type="number" class="form-control" id="salary" >
+        <input name="salary" type="number" step="0.01" min="0" class="form-control" id="salary" >
     </div>
     <div class="form-group">
-        <label for="manager_id">Departamento</label>
-        <select id="manager_id" name="manager_id" class="form-select">
+        <label for="manager_id">Jefe</label>
+        <select id="manager_id" name="manager.id" class="form-select">
             <option value="" selected disabled>-- Elija un jefe --</option>
             <option th:each="o : ${listaEmployees}"
                     th:value="${o.id}"
@@ -56,8 +57,8 @@
     </div>
     <div class="form-group">
         <label for="depId">Departamento</label>
-
-        <select id="depId" name="depId" class="form-select">
+        <!--NO OLVIDARSE LO DEL NAME-->
+        <select id="depId" name="department.id" class="form-select">
             <option value="" selected disabled>-- Elija un departamento --</option>
             <option th:each="dep : ${listaDepartments}"
                     th:value="${dep.id}"
@@ -71,6 +72,6 @@
     <button type="submit" class="btn btn-primary">Guardar</button>
 
 </form>
-
+</div>
 </body>
 </html>

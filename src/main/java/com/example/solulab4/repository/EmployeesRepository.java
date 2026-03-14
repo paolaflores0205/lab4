@@ -25,7 +25,7 @@ public interface EmployeesRepository extends JpaRepository<Employees,Integer>{
     @Query(nativeQuery = true,
         value = "update employees set department_id = ?1, job_id=?2 " +
                 "where employee_id=?3")
-    void actualizarEmployee(Integer depId, Integer jobId,  Integer employeeId);
+    void actualizarEmployee(Integer depId, String jobId,  Integer employeeId);
 
 
 

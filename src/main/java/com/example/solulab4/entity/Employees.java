@@ -31,17 +31,17 @@ public class Employees {
     @Column(name = "phone_number",  length = 25)
     private String phone_number;
 
-    @Column(name = "hire_date")
+    @Column(name = "hire_date", nullable = false)
     private LocalDate hire_date;
 
     @ManyToOne
     @JoinColumn(name = "job_id", nullable = false)
     private Jobs job;
 
-    @Column(name = "salary",nullable = false)
+    @Column(name = "salary")
     private Double salary;
 
-    @Column(name = "commission_pct",nullable = false)
+    @Column(name = "commission_pct")
     private Double commission_pct;
 
     @ManyToOne

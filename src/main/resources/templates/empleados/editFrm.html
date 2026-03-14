@@ -10,51 +10,53 @@
 
 </head>
 <body>
+<div class="container mt-5 shadow-sm p-4 bg-white rounded">
+    <h2>Editar Empleado</h2>
+    <div class="container mt-5 shadow-sm p-4 bg-white rounded">
+    <form method="post" th:action="@{'/empleados/guardarCambios'}">
+        <input th:value="${employee.id}" name="employeeId" type="hidden">
+        <div class="form-group">
+            <label for="first_name">Nombre</label>
+            <input th:value="${employee.first_name}" name="first_name" type="text" class="form-control" id="first_name" readonly>
+        </div>
+        <div class="form-group">
+            <label for="last_name">Apellido</label>
+            <input th:value="${employee.last_name}" name="last_name" type="text" class="form-control" id="last_name" readonly>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input th:value="${employee.email}" name="email" type="text" class="form-control" id="email" readonly>
+        </div>
+        <div class="form-group">
+            <label for="password">Contraseña</label>
+            <input th:value="${employee.password}" name="password" type="text" class="form-control" id="password" readonly>
+        </div>
+        <div class="form-group">
+            <label for="jobId">Puesto</label>
+            <select name="jobId" id="jobId" class="form-select">
+                <option th:each="job : ${listaJobs}"
+                        th:value="${job.id}"
+                        th:text="${job.jobtitle}"
+                        th:selected="${job.id==employee.job.id}"></option>
+            </select>
+    <!--        <input th:value="${employee.job.jobtitle}" name="jobtitle" type="text" class="form-control" id="jobtitle" >-->
+        </div>
+        <div class="form-group">
+            <label for="depId">Departamento</label>
+            <select id="depId" name="depId" class="form-select">
+                <option th:each="dep : ${listaDepartments}"
+                        th:value="${dep.id}"
+                        th:text="${dep.departmentname}"
+                        th:selected="${dep.id==employee.department.id && employee.department != null}"></option>
+            </select>
+    <!--        <input th:value="${employee.department.departmentname}" name="departmentname" type="text" class="form-control" id="departmentname" >-->
+        </div>
 
-<h2>Editar Empleado</h2>
-<form method="post" th:action="@{'/empleados/guardarCambios'}">
-    <input th:value="${employee.id}" name="employee_id" type="hidden">
-    <div class="form-group">
-        <label for="first_name">Nombre</label>
-        <input th:value="${employee.first_name}" name="first_name" type="text" class="form-control" id="first_name" readonly>
-    </div>
-    <div class="form-group">
-        <label for="last_name">Apellido</label>
-        <input th:value="${employee.last_name}" name="last_name" type="text" class="form-control" id="last_name" readonly>
-    </div>
-    <div class="form-group">
-        <label for="email">Email</label>
-        <input th:value="${employee.email}" name="email" type="text" class="form-control" id="email" readonly>
-    </div>
-    <div class="form-group">
-        <label for="password">Contraseña</label>
-        <input th:value="${employee.password}" name="password" type="text" class="form-control" id="password" readonly>
-    </div>
-    <div class="form-group">
-        <label for="jobId">Puesto</label>
-        <select name="jobId" id="jobId" class="form-select">
-            <option th:each="job : ${listaJobs}"
-                    th:value="${job.id}"
-                    th:text="${job.jobtitle}"
-                    th:selected="${job.id==employee.job.id}"></option>
-        </select>
-<!--        <input th:value="${employee.job.jobtitle}" name="jobtitle" type="text" class="form-control" id="jobtitle" >-->
-    </div>
-    <div class="form-group">
-        <label for="depId">Departamento</label>
-        <select id="depId" name="depId" class="form-select">
-            <option th:each="dep : ${listaDepartments}"
-                    th:value="${dep.id}"
-                    th:text="${dep.departmentname}"
-                    th:selected="${dep.id==employee.department.id && employee.department != null}"></option>
-        </select>
-<!--        <input th:value="${employee.department.departmentname}" name="departmentname" type="text" class="form-control" id="departmentname" >-->
-    </div>
+        <a th:href="@{'/empleados/lista'}" class="btn btn-danger">Cancelar</a>
+        <button type="submit" class="btn btn-primary">Actualizar</button>
 
-    <a th:href="@{'/empleados/lista'}" class="btn btn-danger">Cancelar</a>
-    <button type="submit" class="btn btn-primary">Actualizar</button>
-
-</form>
-
+    </form>
+    </div>
+</div>
 </body>
 </html>
