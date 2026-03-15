@@ -10,6 +10,7 @@
 
 </head>
 <body>
+<div th:insert="fragments/menu.html :: menu_superior"></div>
 <div class="container mt-5 shadow-sm p-4 bg-white rounded">
 <h2>Nuevo Empleado</h2>
 <form method="post" th:action="@{'/empleados/guardarNuevo'}">
@@ -66,7 +67,7 @@
         </select>
         <!--        <input th:value="${employee.department.departmentname}" name="departmentname" type="text" class="form-control" id="departmentname" >-->
     </div>
-    <
+
 
     <a th:href="@{'/empleados/lista'}" class="btn btn-danger">Cancelar</a>
     <button type="submit" class="btn btn-primary">Guardar</button>

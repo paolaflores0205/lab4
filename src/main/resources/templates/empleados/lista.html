@@ -14,10 +14,19 @@
 
 <body class="bg-light">
 
+<div th:insert="fragments/menu.html :: menu_superior"></div>
+
 <div class="container mt-5 shadow-sm p-4 bg-white rounded">
 
 <h2>Empleados Totales</h2>
 <a class="btn btn-primary mt-4 mb-4" th:href="@{'/empleados/nuevo'}">Nuevo Empleado</a>
+<form method="get" th:action="@{'/empleados/lista'}" class="d-flex gap-2">
+    <input name="buscar" type="search" class="form-control"
+           placeholder="Buscar por nombre, apellido, puesto o ciudad..."
+           th:value="${busquedaAnterior}">
+    <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+    <a th:href="@{'/empleados/lista'}" class="btn btn-link">Limpiar</a>
+</form>
 <table class="table table-sm">
     <tr>
         <th>#</th>
